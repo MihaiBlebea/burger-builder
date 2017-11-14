@@ -4,13 +4,13 @@ import { BurgerIngredient } from '../exports.js';
 
 function Burger(props)
 {
-    const transformedIngredients = Object.keys(props.ingredients);
     return (
         <div className='Burger'>
             <BurgerIngredient type='bread-top' />
             {
-                transformedIngredients.map((ingredient, index)=> {
+                props.ingredients.map((ingredient, index)=> {
                     return <BurgerIngredient
+                                click={props.click.bind(this, index)}
                                 key={index}
                                 type={ingredient} />;
                 })

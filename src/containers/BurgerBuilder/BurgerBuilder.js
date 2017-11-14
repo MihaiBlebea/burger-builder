@@ -1,16 +1,22 @@
 import React from 'react';
 import { Wrap } from '../../hoc/exports.js';
-import { Burger } from '../../components/exports.js';
+import { Burger, BurgerConstructor } from '../../components/exports.js';
 
 class BurgerBuilder extends React.Component
 {
     state = {
-        ingredients: {
-            salad: 1,
-            bacon: 1,
-            cheese: 2,
-            meat: 2
-        }
+        ingredients: ['salad', 'meat', 'cheese', 'bacon'],
+        currentBurger: ['salad', 'meat', 'cheese', 'salad', 'bacon']
+    }
+
+    onDelete(index)
+    {
+        let ingredients = this.state.ingredients.map((ingredient, key)=> {
+            return (index !== key) ? ingredient : '';
+        });
+        this.setState({
+            currentBurger: ingredients
+        });
     }
 
     render()
@@ -18,9 +24,13 @@ class BurgerBuilder extends React.Component
         return (
             <Wrap>
                 <div>
-                    <Burger ingredients={this.state.ingredients}/>
+                    <Burger
+                        click={this.onDelete.bind(this)}
+                        ingredients={this.state.currentBurger}/>
                 </div>
-                <div>Controller</div>
+                <div>
+                    <BurgerConstructor />
+                </div>
             </Wrap>
         );
     }

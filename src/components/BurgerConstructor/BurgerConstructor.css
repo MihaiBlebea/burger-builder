@@ -1,0 +1,19 @@
+.BurgerConstructorPanel {
+    max-width:600px;
+    background-color: #eee;
+    margin: auto;
+    display:block;
+}
+
+
+/*@media (min-width: 500px) and (min-height: 400px) {
+
+}
+
+@media (min-width: 500px) and (min-height: 401px) {
+
+}
+
+@media (min-width: 1000px) and (min-height: 700px) {
+
+}*/
