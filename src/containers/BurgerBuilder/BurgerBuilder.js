@@ -5,18 +5,43 @@ import { Burger, BurgerConstructor } from '../../components/exports.js';
 class BurgerBuilder extends React.Component
 {
     state = {
-        ingredients: ['salad', 'meat', 'cheese', 'bacon'],
-        currentBurger: ['salad', 'meat', 'cheese', 'salad', 'bacon']
+        ingredients: [
+            {name: 'salad', price: 24},
+            {name: 'meat', price: 24},
+            {name: 'cheese', price: 24},
+            {name: 'bacon', price: 24},
+        ],
+        currentBurger: [],
+        price: 0
     }
 
     onDelete(index)
     {
-        let ingredients = this.state.ingredients.map((ingredient, key)=> {
-            return (index !== key) ? ingredient : '';
-        });
+        let price = this.state.price;
+        let ingredients = this.state.currentBurger.splice(index, 1);
+        console.log(ingredients);
         this.setState({
-            currentBurger: ingredients
+            currentBurger: ingredients,
+            price: price - this.state.ingredients[index].price
         });
+    }
+
+    addIngredient(index)
+    {
+        let ingredients = this.state.currentBurger;
+        let price = this.state.price;
+        this.setState({
+            currentBurger: ingredients.unshift(this.state.ingredients[index]),
+            price: price + this.state.ingredients[index].price
+        })
+    }
+
+    reset()
+    {
+        this.setState({
+            currentBurger: [],
+            price: 0
+        })
     }
 
     render()
@@ -29,7 +54,11 @@ class BurgerBuilder extends React.Component
                         ingredients={this.state.currentBurger}/>
                 </div>
                 <div>
-                    <BurgerConstructor />
+                    <BurgerConstructor
+                        ingredients={this.state.ingredients}
+                        price={this.state.price}
+                        add={this.addIngredient.bind(this)}
+                        reset={this.reset.bind(this)} />
                 </div>
             </Wrap>
         );

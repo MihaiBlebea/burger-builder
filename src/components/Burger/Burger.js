@@ -12,7 +12,7 @@ function Burger(props)
                     return <BurgerIngredient
                                 click={props.click.bind(this, index)}
                                 key={index}
-                                type={ingredient} />;
+                                type={ingredient.name} />;
                 })
             }
             <BurgerIngredient type='bread-bottom' />

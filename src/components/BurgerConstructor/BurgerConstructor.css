@@ -1,8 +1,9 @@
 .BurgerConstructorPanel {
-    max-width:600px;
+    max-width: 600px;
     background-color: #eee;
     margin: auto;
-    display:block;
+    display: flex;
+    justify-content: center;
 }
 
 

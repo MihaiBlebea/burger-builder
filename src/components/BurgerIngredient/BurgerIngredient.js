@@ -24,22 +24,22 @@ class BurgerIngredient extends React.Component
                 break;
             case ('meat'):
                 ingredient = (
-                    <div onClick={this.props.click} className={'Meat'}></div>
+                    <div onClick={this.props.click} className={'Meat Pointer'}></div>
                 );
                 break;
             case ('cheese'):
                 ingredient = (
-                    <div onClick={this.props.click} className={'Cheese'}></div>
+                    <div onClick={this.props.click} className={'Cheese Pointer'}></div>
                 );
                 break;
             case ('bacon'):
                 ingredient = (
-                    <div onClick={this.props.click} className={'Bacon'}></div>
+                    <div onClick={this.props.click} className={'Bacon Pointer'}></div>
                 );
                 break;
             case ('salad'):
                 ingredient = (
-                    <div onClick={this.props.click} className={'Salad'}></div>
+                    <div onClick={this.props.click} className={'Salad Pointer'}></div>
                 );
                 break;
             default:
