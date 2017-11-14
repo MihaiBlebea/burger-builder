@@ -4,6 +4,7 @@ import { BurgerIngredient } from '../exports.js';
 
 function Burger(props)
 {
+    
     return (
         <div className='Burger'>
             <BurgerIngredient type='bread-top' />
@@ -12,7 +13,7 @@ function Burger(props)
                     return <BurgerIngredient
                                 click={props.click.bind(this, index)}
                                 key={index}
-                                type={ingredient.name} />;
+                                type={ingredient} />;
                 })
             }
             <BurgerIngredient type='bread-bottom' />

@@ -17,23 +17,29 @@ class BurgerBuilder extends React.Component
 
     onDelete(index)
     {
-        let price = this.state.price;
-        let ingredients = this.state.currentBurger.splice(index, 1);
-        console.log(ingredients);
+        let price = this.state.ingredients[index].price
+        let ingredients = this.state.currentBurger.filter((ingredient, key)=> {
+            if(index !== key)
+            {
+                return true;
+            }
+            return false;
+        });
         this.setState({
             currentBurger: ingredients,
-            price: price - this.state.ingredients[index].price
+            price: this.state.price - price
         });
     }
 
     addIngredient(index)
     {
-        let ingredients = this.state.currentBurger;
+        let ingredient = this.state.ingredients[index].name;
+        let burger = this.state.currentBurger;
         let price = this.state.price;
         this.setState({
-            currentBurger: ingredients.unshift(this.state.ingredients[index]),
+            currentBurger: burger.concat([ingredient]),
             price: price + this.state.ingredients[index].price
-        })
+        });
     }
 
     reset()
