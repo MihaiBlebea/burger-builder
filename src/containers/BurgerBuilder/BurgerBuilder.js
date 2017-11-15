@@ -1,6 +1,6 @@
 import React from 'react';
 import { Wrap } from '../../hoc/exports.js';
-import { Burger, BurgerConstructor, Message, Modal } from '../../components/exports.js';
+import { Burger, BurgerConstructor, Message, Modal, ModalContent } from '../../components/exports.js';
 
 class BurgerBuilder extends React.Component
 {
@@ -93,6 +93,22 @@ class BurgerBuilder extends React.Component
         })
     }
 
+    parseIngredients()
+    {
+        let result = [];
+        for(let i = 0; i < this.state.currentBurger.length; i++)
+        {
+            let ingredient = this.state.currentBurger[i];
+            if(result[ingredient.name])
+            {
+                result[ingredient.name]['count'] = result[ingredient.name].count + 1;
+            } else {
+                result[ingredient.name] = {name: ingredient.name, count: 1, price: ingredient.price};
+            }
+        }
+        return result;
+    }
+
     message = (
         <Message
             type={'error'}
@@ -116,7 +132,11 @@ class BurgerBuilder extends React.Component
                     reset={this.reset.bind(this)} />
                 <Modal
                     toggle={this.toggleModal.bind(this)}
-                    open={this.state.modal}></Modal>
+                    open={this.state.modal}>
+                        <ModalContent
+                            price={this.state.price}
+                            currentBurger={this.parseIngredients()} />
+                </Modal>
             </Wrap>
         );
     }

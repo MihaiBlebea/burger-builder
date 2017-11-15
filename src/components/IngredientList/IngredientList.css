@@ -1,0 +1,14 @@
+.IngredientList {
+    text-transform: capitalize;
+}
+
+.IngredientListPanel {
+    padding-right:30px;
+    border-right: 1px grey solid;
+}
+
+.IngredientListTotal {
+    text-align: center;
+    font-size: 1.1em;
+    font-weight: bold;
+}
