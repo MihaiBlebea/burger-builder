@@ -4,18 +4,19 @@ import { BurgerIngredient } from '../exports.js';
 
 function Burger(props)
 {
+    let ingredients = props.ingredients.map((ingredient, index)=> {
+        return <BurgerIngredient
+                    click={props.click.bind(this, index)}
+                    key={index}
+                    type={ingredient.name} />;
+    })
+
+    let message = (<p>Please start adding ingredients</p>);
 
     return (
         <div className='Burger'>
             <BurgerIngredient type='bread-top' />
-            {
-                props.ingredients.map((ingredient, index)=> {
-                    return <BurgerIngredient
-                                click={props.click.bind(this, index)}
-                                key={index}
-                                type={ingredient.name} />;
-                })
-            }
+            {(props.ingredients.length === 0) ? message : ingredients}
             <BurgerIngredient type='bread-bottom' />
         </div>
     );
