@@ -16,9 +16,29 @@ class BurgerBuilder extends React.Component
         price: 0
     }
 
+    setLimit(ingredients)
+    {
+        let limit = false;
+        if(ingredients.length > 6)
+        {
+            limit = true;
+        }
+        return limit;
+    }
+
+    calculatePrice(ingredients)
+    {
+        let price = 0;
+        for(let i = 0; i < ingredients.length; i++)
+        {
+            price += ingredients[i].price;
+        }
+        return price;
+    }
+
     onDelete(index)
     {
-        console.log(index)
+        // set up ingredients
         let ingredients = this.state.currentBurger.filter((ingredient, key)=> {
             if(index !== key)
             {
@@ -26,16 +46,17 @@ class BurgerBuilder extends React.Component
             }
             return false;
         });
-        let price = 0;
-        for(let i = 0; i < ingredients.length; i++)
-        {
-            price += ingredients[i].price;
-        }
+
+        // set up price
+        let price = this.calculatePrice(ingredients);
+
+        // set up limit of ingredients
+        let limit = this.setLimit(ingredients);
 
         this.setState({
             currentBurger: ingredients,
             price: price,
-            limit: (this.state.currentBurger.length < 6) ? false : true
+            limit: limit
         });
     }
 
@@ -43,12 +64,14 @@ class BurgerBuilder extends React.Component
     {
         let ingredient = this.state.ingredients[index];
         let burger = this.state.currentBurger;
-        let price = this.state.price;
+        let ingredients = burger.concat([ingredient]);
+        let limit = this.setLimit(ingredients);
+        let price = this.calculatePrice(ingredients);
 
         this.setState({
-            currentBurger: burger.concat([ingredient]),
-            price: price + this.state.ingredients[index].price,
-            limit: (burger.length < 6) ? false : true
+            currentBurger: ingredients,
+            price: price,
+            limit: limit
         });
     }
 
