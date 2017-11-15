@@ -93,17 +93,31 @@ class BurgerBuilder extends React.Component
         })
     }
 
-    parseIngredients()
+    parseIngredients(ingredients)
     {
         let result = [];
-        for(let i = 0; i < this.state.currentBurger.length; i++)
+        for(let i = 0; i < ingredients.length; i++)
         {
-            let ingredient = this.state.currentBurger[i];
-            if(result[ingredient.name])
+            let container = {};
+            let exists = false;
+            for(let j = 0; j < result.length; j++)
             {
-                result[ingredient.name]['count'] = result[ingredient.name].count + 1;
+                if(result[j].name === ingredients[i].name)
+                {
+                    exists = j;
+                }
+            }
+
+            if(exists !== false)
+            {
+                result[exists].count++ ;
             } else {
-                result[ingredient.name] = {name: ingredient.name, count: 1, price: ingredient.price};
+                container = {
+                    name: ingredients[i].name,
+                    count: 1,
+                    price: ingredients[i].price
+                };
+                result.push(container)
             }
         }
         return result;
@@ -135,7 +149,7 @@ class BurgerBuilder extends React.Component
                     open={this.state.modal}>
                         <ModalContent
                             price={this.state.price}
-                            currentBurger={this.parseIngredients()} />
+                            currentBurger={this.parseIngredients(this.state.currentBurger)} />
                 </Modal>
             </Wrap>
         );

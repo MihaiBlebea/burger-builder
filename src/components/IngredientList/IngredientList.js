@@ -5,7 +5,11 @@ function IngredientList(props)
 {
     console.log(props.ingredients.length)
     let list = props.ingredients.map((ingredient, index)=> {
-        return console.log(ingredient)
+        return (
+            <li
+                key={index}
+                className='IngredientList'>{ingredient.count}x {ingredient.name} ( £{ingredient.price * ingredient.count} )</li>
+        );
     });
 
     return (
