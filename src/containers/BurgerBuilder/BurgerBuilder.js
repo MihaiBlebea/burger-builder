@@ -1,6 +1,6 @@
 import React from 'react';
 import { Wrap } from '../../hoc/exports.js';
-import { Burger, BurgerConstructor, Message, Modal, ModalContent } from '../../components/exports.js';
+import { Burger, BurgerConstructor, Message, Modal, ModalCheckout } from '../../components/exports.js';
 
 class BurgerBuilder extends React.Component
 {
@@ -14,7 +14,19 @@ class BurgerBuilder extends React.Component
         currentBurger: [],
         limit: false,
         price: 0,
-        modal: false
+        modal: false,
+        checkout: [
+            { label: 'Name', type: 'text' },
+            { label: 'Phone', type: 'text' },
+            { label: 'Postal Code', type: 'text' },
+        ]
+    }
+
+    checkoutSubmitHandler()
+    {
+        console.log('Checkout submitted');
+        this.toggleModal();
+        this.reset();
     }
 
     setLimit(ingredients)
@@ -147,8 +159,10 @@ class BurgerBuilder extends React.Component
                 <Modal
                     toggle={this.toggleModal.bind(this)}
                     open={this.state.modal}>
-                        <ModalContent
+                        <ModalCheckout
                             price={this.state.price}
+                            fields={this.state.checkout}
+                            submit={this.checkoutSubmitHandler.bind(this)}
                             currentBurger={this.parseIngredients(this.state.currentBurger)} />
                 </Modal>
             </Wrap>

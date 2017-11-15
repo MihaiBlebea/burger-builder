@@ -40,7 +40,7 @@ a.btn {
 
 .modal {
   width: 600px;
-  height: 400px;
+  /*height: 400px;*/
   display: block;
   margin: 50% 0 0 -300px;
   position: relative;

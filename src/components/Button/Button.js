@@ -4,7 +4,8 @@ function Button(props)
 {
     let style = {
         button: {
-            margin: props.margin + 'px',
+            margin: (props.margin) ? props.margin + 'px' : 'auto',
+            display: 'block',
             cursor: 'pointer',
             textTransform: 'capitalize'
         }
