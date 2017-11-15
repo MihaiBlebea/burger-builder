@@ -18,6 +18,7 @@ class BurgerBuilder extends React.Component
 
     onDelete(index)
     {
+        console.log(index)
         let ingredients = this.state.currentBurger.filter((ingredient, key)=> {
             if(index !== key)
             {
@@ -25,9 +26,15 @@ class BurgerBuilder extends React.Component
             }
             return false;
         });
+        let price = 0;
+        for(let i = 0; i < ingredients.length; i++)
+        {
+            price += ingredients[i].price;
+        }
+
         this.setState({
             currentBurger: ingredients,
-            price: 12,
+            price: price,
             limit: (this.state.currentBurger.length < 6) ? false : true
         });
     }
@@ -64,7 +71,7 @@ class BurgerBuilder extends React.Component
     {
         return (
             <Wrap>
-                {(this.state.limit == true) ? this.message : null}
+                {(this.state.limit === true) ? this.message : null}
                 <Burger
                     click={this.onDelete.bind(this)}
                     ingredients={this.state.currentBurger}/>
