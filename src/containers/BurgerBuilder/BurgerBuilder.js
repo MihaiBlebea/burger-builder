@@ -1,6 +1,6 @@
 import React from 'react';
 import { Wrap } from '../../hoc/exports.js';
-import { Burger, BurgerConstructor } from '../../components/exports.js';
+import { Burger, BurgerConstructor, Message } from '../../components/exports.js';
 
 class BurgerBuilder extends React.Component
 {
@@ -38,12 +38,11 @@ class BurgerBuilder extends React.Component
         let burger = this.state.currentBurger;
         let price = this.state.price;
 
-            this.setState({
-                currentBurger: burger.concat([ingredient]),
-                price: price + this.state.ingredients[index].price,
-                limit: (burger.length < 6) ? false : true
-            });
-
+        this.setState({
+            currentBurger: burger.concat([ingredient]),
+            price: price + this.state.ingredients[index].price,
+            limit: (burger.length < 6) ? false : true
+        });
     }
 
     reset()
@@ -55,23 +54,26 @@ class BurgerBuilder extends React.Component
         })
     }
 
+    message = (
+        <Message
+            type={'error'}
+            title={'Error!'}>You reached the limit of ingredients</Message>
+    );
+
     render()
     {
         return (
             <Wrap>
-                <div>
-                    <Burger
-                        click={this.onDelete.bind(this)}
-                        ingredients={this.state.currentBurger}/>
-                </div>
-                <div>
-                    <BurgerConstructor
-                        ingredients={this.state.ingredients}
-                        price={this.state.price}
-                        limit={this.state.limit}
-                        add={this.addIngredient.bind(this)}
-                        reset={this.reset.bind(this)} />
-                </div>
+                {(this.state.limit == true) ? this.message : null}
+                <Burger
+                    click={this.onDelete.bind(this)}
+                    ingredients={this.state.currentBurger}/>
+                <BurgerConstructor
+                    ingredients={this.state.ingredients}
+                    price={this.state.price}
+                    limit={this.state.limit}
+                    add={this.addIngredient.bind(this)}
+                    reset={this.reset.bind(this)} />
             </Wrap>
         );
     }

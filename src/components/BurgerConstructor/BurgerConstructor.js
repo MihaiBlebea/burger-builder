@@ -4,24 +4,24 @@ import './BurgerConstructor.css';
 
 function BurgerConstructor(props)
 {
+    let buttons = props.ingredients.map((ingredient, index)=> {
+        return (
+            <Button
+                key={index}
+                click={props.add.bind(this, index)}
+                type={'primary'}
+                disabled={props.limit}
+                margin={5}>{ingredient.name} £{ingredient.price}</Button>
+        );
+    })
+
     return (
         <div className='BurgerConstructorPanel'>
             <Button
                 click={props.reset.bind(this)}
                 type={'danger'}
                 margin={5}>Reset</Button>
-            {
-                props.ingredients.map((ingredient, index)=> {
-                    return (
-                        <Button
-                            key={index}
-                            click={props.add.bind(this, index)}
-                            type={'primary'}
-                            disabled={props.limit}
-                            margin={5}>{ingredient.name} £{ingredient.price}</Button>
-                    );
-                })
-            }
+            {buttons}
             <Button
                 click={props.reset.bind(this)}
                 type={'success'}
