@@ -11,7 +11,7 @@ function BurgerConstructor(props)
                 click={props.add.bind(this, index)}
                 type={'primary'}
                 disabled={props.limit}
-                margin={5}>{ingredient.name} £{ingredient.price}</Button>
+                margin={5}>+{ingredient.name} £{ingredient.price}</Button>
         );
     })
 

@@ -17,7 +17,7 @@ function Message(props)
     }
 
     return (
-        <div className={classes.join(' ')}>
+        <div className={classes.join(' ')} style={{maxWidth: 700 + 'px', margin: 'auto'}}>
             <strong>{props.title}</strong> {props.children}
         </div>
     );

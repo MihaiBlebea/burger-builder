@@ -12,6 +12,7 @@ class BurgerBuilder extends React.Component
             {name: 'bacon', price: 3},
         ],
         currentBurger: [],
+        limitIngredients: 40,
         limit: false,
         price: 0,
         modal: false,
@@ -32,7 +33,7 @@ class BurgerBuilder extends React.Component
     setLimit(ingredients)
     {
         let limit = false;
-        if(ingredients.length > 6)
+        if(ingredients.length > this.state.limitIngredients)
         {
             limit = true;
         }

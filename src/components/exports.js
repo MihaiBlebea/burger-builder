@@ -8,6 +8,9 @@ import BurgerIngredient from './BurgerIngredient/BurgerIngredient.js';
 import BurgerConstructor from './BurgerConstructor/BurgerConstructor.js';
 import IngredientList from './IngredientList/IngredientList.js';
 import Input from './Input/Input.js';
+import Toolbar from './Navigation/Toolbar/Toolbar.js';
+import NavigationLink from './Navigation/NavigationLink/NavigationLink.js';
+import LogoLink from './Navigation/LogoLink/LogoLink.js';
 
 export {
     Layout,
@@ -19,5 +22,8 @@ export {
     IngredientList,
     BurgerIngredient,
     BurgerConstructor,
-    Input
+    Input,
+    Toolbar,
+    NavigationLink,
+    LogoLink
 }
