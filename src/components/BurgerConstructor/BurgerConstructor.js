@@ -23,7 +23,7 @@ function BurgerConstructor(props)
                 margin={5}>Reset</Button>
             {buttons}
             <Button
-                click={props.reset.bind(this)}
+                click={props.modal.bind(this)}
                 type={'success'}
                 disabled={(props.price < 1) ? true : false}
                 margin={5}>{(props.price < 1) ? 'Buy' : `Buy £${props.price}`}</Button>

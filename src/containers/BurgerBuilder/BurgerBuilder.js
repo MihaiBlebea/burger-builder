@@ -1,6 +1,6 @@
 import React from 'react';
 import { Wrap } from '../../hoc/exports.js';
-import { Burger, BurgerConstructor, Message } from '../../components/exports.js';
+import { Burger, BurgerConstructor, Message, Modal } from '../../components/exports.js';
 
 class BurgerBuilder extends React.Component
 {
@@ -13,7 +13,8 @@ class BurgerBuilder extends React.Component
         ],
         currentBurger: [],
         limit: false,
-        price: 0
+        price: 0,
+        modal: false
     }
 
     setLimit(ingredients)
@@ -84,6 +85,14 @@ class BurgerBuilder extends React.Component
         })
     }
 
+    toggleModal()
+    {
+        let modal = this.state.modal;
+        this.setState({
+            modal: !modal
+        })
+    }
+
     message = (
         <Message
             type={'error'}
@@ -103,7 +112,11 @@ class BurgerBuilder extends React.Component
                     price={this.state.price}
                     limit={this.state.limit}
                     add={this.addIngredient.bind(this)}
+                    modal={this.toggleModal.bind(this)}
                     reset={this.reset.bind(this)} />
+                <Modal
+                    toggle={this.toggleModal.bind(this)}
+                    open={this.state.modal}></Modal>
             </Wrap>
         );
     }
