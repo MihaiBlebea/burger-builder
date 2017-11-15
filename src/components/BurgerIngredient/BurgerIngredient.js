@@ -7,7 +7,6 @@ class BurgerIngredient extends React.Component
 
     render()
     {
-        console.log(this.props)
         let ingredient = null;
         switch (this.props.type)
         {

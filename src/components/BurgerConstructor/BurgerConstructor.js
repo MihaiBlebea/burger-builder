@@ -4,7 +4,6 @@ import './BurgerConstructor.css';
 
 function BurgerConstructor(props)
 {
-    // let price = (props.price > 0) ?
     return (
         <div className='BurgerConstructorPanel'>
             <Button
@@ -16,9 +15,10 @@ function BurgerConstructor(props)
                     return (
                         <Button
                             key={index}
-                            type={'primary'}
                             click={props.add.bind(this, index)}
-                            margin={5}>{ingredient.name}</Button>
+                            type={'primary'}
+                            disabled={props.limit}
+                            margin={5}>{ingredient.name} £{ingredient.price}</Button>
                     );
                 })
             }

@@ -6,18 +6,18 @@ class BurgerBuilder extends React.Component
 {
     state = {
         ingredients: [
-            {name: 'salad', price: 24},
-            {name: 'meat', price: 24},
-            {name: 'cheese', price: 24},
-            {name: 'bacon', price: 24},
+            {name: 'salad', price: 2},
+            {name: 'meat', price: 1.5},
+            {name: 'cheese', price: 5},
+            {name: 'bacon', price: 3},
         ],
         currentBurger: [],
+        limit: false,
         price: 0
     }
 
     onDelete(index)
     {
-        let price = this.state.ingredients[index].price
         let ingredients = this.state.currentBurger.filter((ingredient, key)=> {
             if(index !== key)
             {
@@ -27,26 +27,31 @@ class BurgerBuilder extends React.Component
         });
         this.setState({
             currentBurger: ingredients,
-            price: this.state.price - price
+            price: 12,
+            limit: (this.state.currentBurger.length < 6) ? false : true
         });
     }
 
     addIngredient(index)
     {
-        let ingredient = this.state.ingredients[index].name;
+        let ingredient = this.state.ingredients[index];
         let burger = this.state.currentBurger;
         let price = this.state.price;
-        this.setState({
-            currentBurger: burger.concat([ingredient]),
-            price: price + this.state.ingredients[index].price
-        });
+
+            this.setState({
+                currentBurger: burger.concat([ingredient]),
+                price: price + this.state.ingredients[index].price,
+                limit: (burger.length < 6) ? false : true
+            });
+
     }
 
     reset()
     {
         this.setState({
             currentBurger: [],
-            price: 0
+            price: 0,
+            limit: false
         })
     }
 
@@ -63,6 +68,7 @@ class BurgerBuilder extends React.Component
                     <BurgerConstructor
                         ingredients={this.state.ingredients}
                         price={this.state.price}
+                        limit={this.state.limit}
                         add={this.addIngredient.bind(this)}
                         reset={this.reset.bind(this)} />
                 </div>
