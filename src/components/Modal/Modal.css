@@ -39,20 +39,24 @@ a.btn {
 }
 
 .modal {
-  width: 600px;
-  /*height: 400px;*/
-  display: block;
-  margin: 50% 0 0 -300px;
-  position: relative;
-  top: 50%;
-  left: 50%;
-  background: #fff;
-  opacity: 0;
-  transition: all 0.5s ease-in-out;
+    right: 0;
+   left: 0;
+   width: 90%;
+   height: fit-content;
+   display: block;
+   margin:auto;
+   position: absolute;
+   top: 0;
+   bottom: 0;
+   background: #fff;
+   opacity: 0;
+   -webkit-transition: all .5s ease-in-out;
+   -o-transition: all .5s ease-in-out;
+   transition: all .5s ease-in-out;
 }
 
 .modal-wrapper.open .modal {
-  margin-top: -200px;
+  /*margin-top: -200px;*/
   opacity: 1;
 }
 
@@ -73,7 +77,7 @@ a.btn {
 }
 
 .content {
-  padding: 10%;
+  padding: 30px;
 }
 
 .good-job {
@@ -86,4 +90,23 @@ a.btn {
 }
 .good-job h1 {
   font-size: 45px;
+}
+
+@media (min-width: 700px) {
+    .modal {
+       right: 0;
+       left: 0;
+       width: 600px;
+       height: fit-content;
+       display: block;
+       margin:auto;
+       position: absolute;
+       top: 0;
+       bottom: 0;
+       background: #fff;
+       opacity: 0;
+       -webkit-transition: all .5s ease-in-out;
+       -o-transition: all .5s ease-in-out;
+       transition: all .5s ease-in-out;
+    }
 }

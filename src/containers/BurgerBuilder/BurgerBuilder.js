@@ -26,7 +26,7 @@ class BurgerBuilder extends React.Component
     checkoutSubmitHandler()
     {
         console.log('Checkout submitted');
-        this.toggleModal();
+        this.toggleModalHandler();
         this.reset();
     }
 
@@ -50,7 +50,7 @@ class BurgerBuilder extends React.Component
         return price;
     }
 
-    onDelete(index)
+    onDeleteHandler(index)
     {
         // set up ingredients
         let ingredients = this.state.currentBurger.filter((ingredient, key)=> {
@@ -74,7 +74,7 @@ class BurgerBuilder extends React.Component
         });
     }
 
-    addIngredient(index)
+    addIngredientHandler(index)
     {
         let ingredient = this.state.ingredients[index];
         let burger = this.state.currentBurger;
@@ -98,7 +98,7 @@ class BurgerBuilder extends React.Component
         })
     }
 
-    toggleModal()
+    toggleModalHandler()
     {
         let modal = this.state.modal;
         this.setState({
@@ -148,19 +148,19 @@ class BurgerBuilder extends React.Component
             <Wrap>
                 {(this.state.limit === true) ? this.message : null}
                 <Burger
-                    click={this.onDelete.bind(this)}
+                    click={this.onDeleteHandler.bind(this)}
                     ingredients={this.state.currentBurger}/>
                 <Footer>
                     <BurgerConstructor
                         ingredients={this.state.ingredients}
                         price={this.state.price}
                         limit={this.state.limit}
-                        add={this.addIngredient.bind(this)}
-                        modal={this.toggleModal.bind(this)}
+                        add={this.addIngredientHandler.bind(this)}
+                        modal={this.toggleModalHandler.bind(this)}
                         reset={this.reset.bind(this)} />
                 </Footer>
                 <Modal
-                    toggle={this.toggleModal.bind(this)}
+                    toggle={this.toggleModalHandler.bind(this)}
                     open={this.state.modal}>
                         <ModalCheckout
                             price={this.state.price}

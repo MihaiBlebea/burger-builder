@@ -3,12 +3,13 @@ import './IngredientList.css';
 
 function IngredientList(props)
 {
-    console.log(props.ingredients.length)
     let list = props.ingredients.map((ingredient, index)=> {
         return (
             <li
                 key={index}
-                className='IngredientList'>{ingredient.count}x {ingredient.name} ( £{ingredient.price * ingredient.count} )</li>
+                className='IngredientList'>
+                <span style={{fontWeight: 'bold', color: '#0069D9'}}>{ingredient.count}x</span> {ingredient.name} ( £{ingredient.price * ingredient.count} )
+            </li>
         );
     });
 
