@@ -11,6 +11,7 @@ import Input from './Input/Input.js';
 import Toolbar from './Navigation/Toolbar/Toolbar.js';
 import NavigationLink from './Navigation/NavigationLink/NavigationLink.js';
 import LogoLink from './Navigation/LogoLink/LogoLink.js';
+import Footer from './Footer/Footer.js';
 
 export {
     Layout,
@@ -25,5 +26,6 @@ export {
     Input,
     Toolbar,
     NavigationLink,
-    LogoLink
+    LogoLink,
+    Footer
 }

@@ -16,7 +16,6 @@ function BurgerConstructor(props)
     })
 
     return (
-        <footer className='footer'>
         <div className='card'>
             <div className='card-body' style={{display: 'flex', justifyContent: 'center', backgroundColor: '#eee'}}>
                 <div className='row'>
@@ -33,7 +32,6 @@ function BurgerConstructor(props)
                 </div>
             </div>
         </div>
-        </footer>
     );
 }
 

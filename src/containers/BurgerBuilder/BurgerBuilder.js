@@ -1,6 +1,6 @@
 import React from 'react';
 import { Wrap } from '../../hoc/exports.js';
-import { Burger, BurgerConstructor, Message, Modal, ModalCheckout } from '../../components/exports.js';
+import { Burger, BurgerConstructor, Message, Modal, ModalCheckout, Footer } from '../../components/exports.js';
 
 class BurgerBuilder extends React.Component
 {
@@ -150,13 +150,15 @@ class BurgerBuilder extends React.Component
                 <Burger
                     click={this.onDelete.bind(this)}
                     ingredients={this.state.currentBurger}/>
-                <BurgerConstructor
-                    ingredients={this.state.ingredients}
-                    price={this.state.price}
-                    limit={this.state.limit}
-                    add={this.addIngredient.bind(this)}
-                    modal={this.toggleModal.bind(this)}
-                    reset={this.reset.bind(this)} />
+                <Footer>
+                    <BurgerConstructor
+                        ingredients={this.state.ingredients}
+                        price={this.state.price}
+                        limit={this.state.limit}
+                        add={this.addIngredient.bind(this)}
+                        modal={this.toggleModal.bind(this)}
+                        reset={this.reset.bind(this)} />
+                </Footer>
                 <Modal
                     toggle={this.toggleModal.bind(this)}
                     open={this.state.modal}>
