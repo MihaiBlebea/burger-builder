@@ -1,6 +1,7 @@
 import React from 'react';
 import { Wrap } from '../../hoc/exports.js';
 import { Burger, BurgerConstructor, Message, Modal, ModalCheckout, Footer } from '../../components/exports.js';
+import axios from '../../axios-orders.js';
 
 class BurgerBuilder extends React.Component
 {
@@ -14,20 +15,78 @@ class BurgerBuilder extends React.Component
         currentBurger: [],
         limitIngredients: 40,
         limit: false,
+        error: {
+            show: false,
+            message: null,
+            type: null
+        },
         price: 0,
         modal: false,
         checkout: [
             { label: 'Name', type: 'text' },
             { label: 'Phone', type: 'text' },
             { label: 'Postal Code', type: 'text' },
-        ]
+        ],
+        customer: {
+            name: 'Serban',
+            phone: '0757103898',
+            code: 'NW2 1UT'
+        }
     }
 
     checkoutSubmitHandler()
     {
         console.log('Checkout submitted');
-        this.toggleModalHandler();
-        this.reset();
+        let payload = {
+            name: this.state.customer.name,
+            phone: this.state.customer.phone,
+            code: this.state.customer.code,
+            price: this.state.price
+        };
+
+        axios.post('/orders.json', payload).then((response)=> {
+            console.log(response.request.status);
+            if(response.request.status === 200)
+            {
+                this.setError({
+                    type: 'success',
+                    message: 'Your burger is on the way'
+                });
+
+                this.toggleModalHandler();
+                this.reset();
+            }
+        }).catch((err)=> {
+            console.log(err);
+            this.setError({
+                type: 'error',
+                message: 'Something went wrong, please checkout again'
+            });
+        });
+    }
+
+    setError(obj)
+    {
+        this.setState({
+            error: {
+                show: true,
+                message: obj.message,
+                type: obj.type
+            }
+        });
+
+        setTimeout(()=> {
+            this.removeError();
+        }, 5000);
+    }
+
+    removeError()
+    {
+        this.setState({
+            error: {
+                show: false
+            }
+        })
     }
 
     setLimit(ingredients)
@@ -52,7 +111,6 @@ class BurgerBuilder extends React.Component
 
     onDeleteHandler(index)
     {
-        // set up ingredients
         let ingredients = this.state.currentBurger.filter((ingredient, key)=> {
             if(index !== key)
             {
@@ -60,11 +118,7 @@ class BurgerBuilder extends React.Component
             }
             return false;
         });
-
-        // set up price
         let price = this.calculatePrice(ingredients);
-
-        // set up limit of ingredients
         let limit = this.setLimit(ingredients);
 
         this.setState({
@@ -136,17 +190,14 @@ class BurgerBuilder extends React.Component
         return result;
     }
 
-    message = (
-        <Message
-            type={'error'}
-            title={'Error!'}>You reached the limit of ingredients</Message>
-    );
-
     render()
     {
         return (
             <Wrap>
-                {(this.state.limit === true) ? this.message : null}
+                <Message
+                    show={this.state.error.show}
+                    type={this.state.error.type}
+                    title={this.state.error.type}>{this.state.error.message}</Message>
                 <Burger
                     click={this.onDeleteHandler.bind(this)}
                     ingredients={this.state.currentBurger}/>

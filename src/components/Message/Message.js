@@ -16,11 +16,13 @@ function Message(props)
             classes.push('alert-info');
     }
 
-    return (
-        <div className={classes.join(' ')} style={{maxWidth: 700 + 'px', margin: 'auto'}}>
-            <strong>{props.title}</strong> {props.children}
+    let message = (
+        <div className={classes.join(' ')} style={{ maxWidth: 90 + '%', margin: 'auto' }}>
+            <strong style={{ textTransform: 'capitalize' }}>{props.title}!</strong> {props.children}
         </div>
-    );
+    )
+
+    return (props.show) ? message : null;
 }
 
 export default Message;

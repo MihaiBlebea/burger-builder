@@ -6,8 +6,10 @@ function Input(props)
     return (
         <Wrap>
             <div className="form-group">
-               <label>{props.label}</label>
-               <input type={props.type} className="form-control"/>
+                <label>{props.label}</label>
+                <input
+                    type={props.type}
+                    className="form-control"/>
             </div>
         </Wrap>
     );

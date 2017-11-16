@@ -5,7 +5,10 @@ function ModalCheckout(props)
 {
     let inputs = props.fields.map((field, index)=> {
         return (
-            <Input key={index} label={field.label} type={field.type}/>
+            <Input
+                key={index}
+                label={field.label}
+                type={field.type}/>
         );
     });
 
@@ -19,7 +22,7 @@ function ModalCheckout(props)
             <div className='md-col-6'>
                 {inputs}
                 <Button
-                    click={props.submit.bind(this)}
+                    click={props.submit.bind(this, 'Serban Blebea', '0757103898', 'NW2 1UT')}
                     type={'primary'}>Finish Checkout</Button>
             </div>
         </div>
