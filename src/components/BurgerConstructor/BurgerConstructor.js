@@ -16,32 +16,24 @@ function BurgerConstructor(props)
     })
 
     return (
-        // <div className='BurgerConstructorPanel'>
-        //     <Button
-        //         click={props.reset.bind(this)}
-        //         type={'danger'}
-        //         margin={5}>Reset</Button>
-        //     {buttons}
-        //     <Button
-        //         click={props.modal.bind(this)}
-        //         type={'success'}
-        //         disabled={(props.price < 1) ? true : false}
-        //         margin={5}>{(props.price < 1) ? 'Buy' : `Buy £${props.price}`}</Button>
-        // </div>
-        <div className="card">
-            <div className="card-body" style={{display: 'flex', justifyContent: 'center', backgroundColor: '#eee'}}>
-                <Button
-                    click={props.reset.bind(this)}
-                    type={'danger'}
-                    margin={5}>Reset</Button>
-                {buttons}
-                <Button
-                    click={props.modal.bind(this)}
-                    type={'success'}
-                    disabled={(props.price < 1) ? true : false}
-                    margin={5}>{(props.price < 1) ? 'Buy' : `Buy £${props.price}`}</Button>
+        <footer className='footer'>
+        <div className='card'>
+            <div className='card-body' style={{display: 'flex', justifyContent: 'center', backgroundColor: '#eee'}}>
+                <div className='row'>
+                    <Button
+                        click={props.reset.bind(this)}
+                        type={'danger'}
+                        margin={5}>Reset</Button>
+                    {buttons}
+                    <Button
+                        click={props.modal.bind(this)}
+                        type={'success'}
+                        disabled={(props.price < 1) ? true : false}
+                        margin={5}>{(props.price < 1) ? 'Buy' : `Buy £${props.price}`}</Button>
+                </div>
             </div>
         </div>
+        </footer>
     );
 }
 
