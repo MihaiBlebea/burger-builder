@@ -19,7 +19,6 @@ class BurgerBuilder extends React.Component
             { name: 'cheese', price: 5 },
             { name: 'bacon', price: 3 },
         ],
-        // ingredients: null,
         currentBurger: [],
         error: {
             show: false,
@@ -29,11 +28,6 @@ class BurgerBuilder extends React.Component
         price: 0,
         modal: false,
         loading: false,
-        checkout: [
-            { label: 'Name', type: 'text' },
-            { label: 'Phone', type: 'text' },
-            { label: 'Postal Code', type: 'text' },
-        ],
         customer: {
             name: 'Serban',
             phone: '0757103898',
@@ -214,14 +208,32 @@ class BurgerBuilder extends React.Component
         return result;
     }
 
-    burger = (
-        <Burger
-            click={this.onDeleteHandler.bind(this)}
-            ingredients={this.state.currentBurger}/>
-    )
-
     render()
     {
+        let burger = (
+            <Burger
+                click={this.onDeleteHandler.bind(this)}
+                ingredients={this.state.currentBurger}/>
+        );
+
+        let burgerConstructor = (
+            <BurgerConstructor
+                ingredients={this.state.ingredients}
+                price={this.state.price}
+                add={this.addIngredientHandler.bind(this)}
+                modal={this.toggleModalHandler.bind(this)}
+                reset={this.reset.bind(this)} />
+        );
+
+        let orderSummary = (
+            <OrderSummary
+                price={this.state.price}
+                fields={this.state.checkout}
+                submit={this.checkoutSubmitHandler.bind(this)}
+                cancel={this.toggleModalHandler.bind(this)}
+                currentBurger={this.parseIngredients(this.state.currentBurger)} />
+        );
+
         return (
             <Wrap>
                 <Loader show={this.state.loading}/>
@@ -229,26 +241,14 @@ class BurgerBuilder extends React.Component
                     show={this.state.error.show}
                     type={this.state.error.type}
                     title={this.state.error.type}>{this.state.error.message}</Message>
-                <Burger
-                    click={this.onDeleteHandler.bind(this)}
-                    ingredients={this.state.currentBurger}/>
+                {burger}
                 <Footer>
-                    <BurgerConstructor
-                        ingredients={this.state.ingredients}
-                        price={this.state.price}
-                        add={this.addIngredientHandler.bind(this)}
-                        modal={this.toggleModalHandler.bind(this)}
-                        reset={this.reset.bind(this)} />
+                    {burgerConstructor}
                 </Footer>
                 <Modal
                     toggle={this.toggleModalHandler.bind(this)}
                     open={this.state.modal}>
-                        <OrderSummary
-                            price={this.state.price}
-                            fields={this.state.checkout}
-                            submit={this.checkoutSubmitHandler.bind(this)}
-                            cancel={this.toggleModalHandler.bind(this)}
-                            currentBurger={this.parseIngredients(this.state.currentBurger)} />
+                        {orderSummary}
                 </Modal>
             </Wrap>
         );

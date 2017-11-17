@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function NavigationLink(props)
 {
@@ -11,7 +12,7 @@ function NavigationLink(props)
 
     return (
         <li className={classes.join(' ')}>
-            <a className='nav-link' href={props.link}>{props.linkName}</a>
+            <Link className='nav-link' to={props.link}>{props.linkName}</Link>
         </li>
     );
 }

@@ -1,12 +1,12 @@
 import React from 'react';
 import { Wrap } from '../../hoc/exports.js';
-import { Toolbar } from '../exports.js';
+import { Toolbar } from '../../components/exports.js';
 
 function Layout(props)
 {
     return (
         <Wrap>
-            <div className={'mb-5'}><Toolbar /></div>
+            <Toolbar />
             <div>{props.children}</div>
         </Wrap>
     );

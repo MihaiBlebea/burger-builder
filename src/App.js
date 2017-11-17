@@ -1,13 +1,20 @@
 import React from 'react';
-import { Layout } from './components/exports.js';
-import { BurgerBuilder } from './containers/exports.js';
+import { Route } from 'react-router-dom';
+import { Layout } from './hoc/exports.js';
+// import { BurgerBuilder, Home } from './containers/exports.js';
+import routes from './routes.js';
 
 class App extends React.Component {
-    render() {
+    render()
+    {
+        let routeMap = routes.map((route, index)=> {
+            return <Route key={index} path={route.link} exact component={route.component} />
+        });
+
         return (
             <div className="App">
                 <Layout>
-                    <BurgerBuilder/>
+                    {routeMap}
                 </Layout>
             </div>
         );

@@ -14,7 +14,7 @@ function Burger(props)
     let message = (<p>Please start adding ingredients</p>);
 
     return (
-        <div className='Burger'>
+        <div className='Burger mt-5'>
             <BurgerIngredient type='bread-top' />
             {(props.ingredients.length === 0) ? message : ingredients}
             <BurgerIngredient type='bread-bottom' />

@@ -31,7 +31,7 @@ function Button(props)
     return (
         <button
             type='button'
-            onClick={props.click.bind(this)}
+            onClick={(props.click) ? props.click.bind(this) : null}
             style={style.button}
             disabled={props.disabled}
             className={classes.join(' ')}>{props.children}</button>
