@@ -20,6 +20,7 @@ function Offer()
 
                 <Link to='/burger-builder' style={{textDecoration: 'none'}}>
                     <Button
+                        size={'large'}
                         click={null}>Start Building!</Button>
                 </Link>
             </div>

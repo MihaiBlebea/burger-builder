@@ -28,6 +28,21 @@ function Button(props)
             classes.push('btn-primary');
     }
 
+    switch(props.size)
+    {
+        case('large'):
+            classes.push('btn-lg');
+            break;
+        case('medium'):
+            classes.push('btn-md');
+            break;
+        case('small'):
+            classes.push('btn-sm');
+            break;
+        default:
+            classes.push('btn-md');
+    }
+
     return (
         <button
             type='button'
