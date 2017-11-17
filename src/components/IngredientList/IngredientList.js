@@ -15,7 +15,7 @@ function IngredientList(props)
 
     return (
         <div className='IngredientListPanel'>
-            <h4>Ingredient list:</h4>
+            <h4 className='IngredientListTitle'>Ingredient list:</h4>
             <ul>
                 {list}
             </ul>

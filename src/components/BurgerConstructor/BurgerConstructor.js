@@ -10,7 +10,7 @@ function BurgerConstructor(props)
                 key={index}
                 click={props.add.bind(this, index)}
                 type={'primary'}
-                disabled={props.limit}
+                disabled={false}
                 margin={5}>+{ingredient.name} £{ingredient.price}</Button>
         );
     })

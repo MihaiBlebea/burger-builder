@@ -1,10 +1,21 @@
+ul {
+    border-left: 1px grey solid;
+    margin:auto;
+    display:block;
+    width:fit-content;
+    margin:20px auto;
+}
+
+.IngredientListTitle {
+    text-align: center;
+}
+
 .IngredientList {
     text-transform: capitalize;
 }
 
 .IngredientListPanel {
     padding-right:30px;
-    border-right: 1px grey solid;
 }
 
 .IngredientListTotal {

@@ -1,6 +1,13 @@
 import React from 'react';
 import { Wrap } from '../../hoc/exports.js';
-import { Burger, BurgerConstructor, Message, Modal, ModalCheckout, Footer } from '../../components/exports.js';
+import {
+    Burger,
+    BurgerConstructor,
+    Message,
+    Modal,
+    OrderSummary,
+    Footer,
+    Loader } from '../../components/exports.js';
 import axios from '../../axios-orders.js';
 
 class BurgerBuilder extends React.Component
@@ -13,8 +20,6 @@ class BurgerBuilder extends React.Component
             {name: 'bacon', price: 3},
         ],
         currentBurger: [],
-        limitIngredients: 40,
-        limit: false,
         error: {
             show: false,
             message: null,
@@ -22,6 +27,7 @@ class BurgerBuilder extends React.Component
         },
         price: 0,
         modal: false,
+        loading: false,
         checkout: [
             { label: 'Name', type: 'text' },
             { label: 'Phone', type: 'text' },
@@ -43,6 +49,7 @@ class BurgerBuilder extends React.Component
             code: this.state.customer.code,
             price: this.state.price
         };
+        this.setLoading();
 
         axios.post('/orders.json', payload).then((response)=> {
             console.log(response.request.status);
@@ -56,12 +63,14 @@ class BurgerBuilder extends React.Component
                 this.toggleModalHandler();
                 this.reset();
             }
+            this.removeLoading();
         }).catch((err)=> {
             console.log(err);
             this.setError({
                 type: 'error',
                 message: 'Something went wrong, please checkout again'
             });
+            this.removeLoading();
         });
     }
 
@@ -89,14 +98,18 @@ class BurgerBuilder extends React.Component
         })
     }
 
-    setLimit(ingredients)
+    setLoading()
     {
-        let limit = false;
-        if(ingredients.length > this.state.limitIngredients)
-        {
-            limit = true;
-        }
-        return limit;
+        this.setState({
+            loading: true
+        })
+    }
+
+    removeLoading()
+    {
+        this.setState({
+            loading: false
+        })
     }
 
     calculatePrice(ingredients)
@@ -119,12 +132,10 @@ class BurgerBuilder extends React.Component
             return false;
         });
         let price = this.calculatePrice(ingredients);
-        let limit = this.setLimit(ingredients);
 
         this.setState({
             currentBurger: ingredients,
-            price: price,
-            limit: limit
+            price: price
         });
     }
 
@@ -133,13 +144,11 @@ class BurgerBuilder extends React.Component
         let ingredient = this.state.ingredients[index];
         let burger = this.state.currentBurger;
         let ingredients = burger.concat([ingredient]);
-        let limit = this.setLimit(ingredients);
         let price = this.calculatePrice(ingredients);
 
         this.setState({
             currentBurger: ingredients,
-            price: price,
-            limit: limit
+            price: price
         });
     }
 
@@ -147,8 +156,7 @@ class BurgerBuilder extends React.Component
     {
         this.setState({
             currentBurger: [],
-            price: 0,
-            limit: false
+            price: 0
         })
     }
 
@@ -194,6 +202,7 @@ class BurgerBuilder extends React.Component
     {
         return (
             <Wrap>
+                <Loader show={this.state.loading}/>
                 <Message
                     show={this.state.error.show}
                     type={this.state.error.type}
@@ -205,7 +214,6 @@ class BurgerBuilder extends React.Component
                     <BurgerConstructor
                         ingredients={this.state.ingredients}
                         price={this.state.price}
-                        limit={this.state.limit}
                         add={this.addIngredientHandler.bind(this)}
                         modal={this.toggleModalHandler.bind(this)}
                         reset={this.reset.bind(this)} />
@@ -213,10 +221,11 @@ class BurgerBuilder extends React.Component
                 <Modal
                     toggle={this.toggleModalHandler.bind(this)}
                     open={this.state.modal}>
-                        <ModalCheckout
+                        <OrderSummary
                             price={this.state.price}
                             fields={this.state.checkout}
                             submit={this.checkoutSubmitHandler.bind(this)}
+                            cancel={this.toggleModalHandler.bind(this)}
                             currentBurger={this.parseIngredients(this.state.currentBurger)} />
                 </Modal>
             </Wrap>
