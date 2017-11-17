@@ -4,6 +4,7 @@ import './BurgerConstructor.css';
 
 function BurgerConstructor(props)
 {
+    console.log(props)
     let buttons = props.ingredients.map((ingredient, index)=> {
         return (
             <Button

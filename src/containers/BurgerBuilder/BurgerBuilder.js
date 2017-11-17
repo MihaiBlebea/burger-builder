@@ -14,11 +14,12 @@ class BurgerBuilder extends React.Component
 {
     state = {
         ingredients: [
-            {name: 'salad', price: 2},
-            {name: 'meat', price: 1.5},
-            {name: 'cheese', price: 5},
-            {name: 'bacon', price: 3},
+            { name: 'salad', price: 2 },
+            { name: 'meat', price: 1.5 },
+            { name: 'cheese', price: 5 },
+            { name: 'bacon', price: 3 },
         ],
+        // ingredients: null,
         currentBurger: [],
         error: {
             show: false,
@@ -38,6 +39,21 @@ class BurgerBuilder extends React.Component
             phone: '0757103898',
             code: 'NW2 1UT'
         }
+    }
+
+    componentDidMount()
+    {
+        axios.get('https://burger-builder-a93a7.firebaseio.com/ingredients.json').then((response)=> {
+            console.log(response.data)
+            if(response.request.status === 200)
+            {
+                this.setState({
+                    ingredients: response.data
+                })
+            }
+        }).catch((err)=> {
+            console.log(err)
+        });
     }
 
     checkoutSubmitHandler()
@@ -197,6 +213,12 @@ class BurgerBuilder extends React.Component
         }
         return result;
     }
+
+    burger = (
+        <Burger
+            click={this.onDeleteHandler.bind(this)}
+            ingredients={this.state.currentBurger}/>
+    )
 
     render()
     {
