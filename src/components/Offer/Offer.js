@@ -6,19 +6,18 @@ import './Offer.css';
 function Offer()
 {
     return (
-        <div className='OfferBackground jumbotron'>
+        <div className='OfferBackground'>
             <div className='OfferContent'>
                 <h1 className='display-3 text-center OfferMain'>Do not find time to cook?</h1>
                 <h3 className='text-center mb-5'>
                     <TypeText strings={[
-                        'Start building the perfect burger...',
-                        'Add every ingredient that you like...',
-                        'Fast and secure checkout...',
-                        '...and we will deliver to your door in max 20 mins'
+                        'Build the perfect burger...',
+                        'Easy and fast checkout...',
+                        '...we deliver in max 20 mins'
                     ]}/>
                 </h3>
 
-                <Link to='/burger-builder' style={{textDecoration: 'none'}}>
+                <Link to='/burger-builder'>
                     <Button
                         size={'large'}
                         click={null}>Start Building!</Button>

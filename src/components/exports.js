@@ -14,6 +14,11 @@ import Footer from './Footer/Footer.js';
 import Loader from './Loader/Loader.js';
 import Offer from './Offer/Offer.js';
 import TypeText from './TypeText/TypeText.js';
+import FooterContent from './Footer/FooterContent/FooterContent.js';
+import Steps from './Steps/Steps.js';
+import Step from './Steps/Step/Step.js';
+import OurStory from './OurStory/OurStory.js';
+import OurBenefits from './OurBenefits/OurBenefits.js';
 
 export {
     Button,
@@ -31,5 +36,10 @@ export {
     Loader,
     OrderSummary,
     Offer,
-    TypeText
+    TypeText,
+    FooterContent,
+    Steps,
+    Step,
+    OurStory,
+    OurBenefits
 }

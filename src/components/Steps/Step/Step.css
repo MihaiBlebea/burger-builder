@@ -1,0 +1,24 @@
+.Step {
+    align-items: center;
+}
+
+.StepNumber {
+    font-size: 4em;
+    font-weight: bold;
+    color: #61DAFB;
+    width:inherit;
+}
+
+.StepTitle {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.StepContent {
+    color: #ffffff80;
+}
+
+.StepText {
+    width:inherit;
+}
