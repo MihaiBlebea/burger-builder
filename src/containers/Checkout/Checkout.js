@@ -1,17 +1,13 @@
 import React from 'react';
-import { Footer, FooterContent } from '../../components/exports.js';
+import { CheckoutForm } from '../../components/exports.js';
+import { CenterContent } from '../../hoc/exports.js';
 
 function Checkout()
 {
     return (
-        <div>
-            <div>
-                Checkout Page
-            </div>
-            <Footer>
-                <FooterContent />
-            </Footer>
-        </div>
+        <CenterContent>
+            <CheckoutForm />
+        </CenterContent>
     );
 }
 

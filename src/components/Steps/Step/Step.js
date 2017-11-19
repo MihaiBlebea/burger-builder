@@ -5,10 +5,10 @@ function Step(props)
 {
     return (
         <div className='row Step'>
-            <div className='col-md-3 col-sm-3 col-xs-3 StepNumber'>
+            <div className='col-md-3 col-sm-12 col-xs-12 StepNumber'>
                 {props.number}
             </div>
-            <div className='col-md-9 col-sm-9 col-xs-9 StepText'>
+            <div className='col-md-9 col-sm-12 col-xs-12 StepText text-center'>
                 <div className='row StepTitle'>
                     {props.title}
                 </div>

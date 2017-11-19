@@ -14,6 +14,8 @@
 
 .IngredientList {
     text-transform: capitalize;
+    margin-bottom: 10px;
+    font-size:1.2em;
 }
 
 .IngredientListPanel {

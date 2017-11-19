@@ -1,5 +1,5 @@
 import React from 'react';
-// import './TypeText.css';
+import './TypeText.css';
 import Typed from 'typed.js';
 
 class TypeText extends React.Component

@@ -12,7 +12,7 @@ function Steps()
                         <Step
                             number={1}
                             title={'Build'}
-                            content={'Make your own custom burger'}/>
+                            content={'Make your custom burger'}/>
                     </div>
                     <div className='col-md-4'>
                         <Step

@@ -1,11 +1,10 @@
 import React from 'react';
 import {
     Offer,
-    Footer,
-    FooterContent,
     Steps,
     OurStory,
     OurBenefits } from '../../components/exports.js';
+import { CenterContent } from '../../hoc/exports.js';
 
 function Home()
 {
@@ -13,12 +12,14 @@ function Home()
         <div>
             <Offer />
             <Steps />
-            <OurBenefits>Why build your own burger?</OurBenefits>
-            <OurStory>Who exactly are we?</OurStory>
 
-            <Footer>
-                <FooterContent />
-            </Footer>
+            <CenterContent>
+                <OurBenefits>Why build your own burger?</OurBenefits>
+            </CenterContent>
+
+            <CenterContent>
+                <OurStory>Who exactly are we?</OurStory>
+            </CenterContent>
         </div>
     );
 }

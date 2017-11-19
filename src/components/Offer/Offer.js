@@ -9,7 +9,7 @@ function Offer()
         <div className='OfferBackground'>
             <div className='OfferContent'>
                 <h1 className='display-3 text-center OfferMain'>Do not find time to cook?</h1>
-                <h3 className='text-center mb-5'>
+                <h3 className='text-center mb-5 OfferSubTitle'>
                     <TypeText strings={[
                         'Build the perfect burger...',
                         'Easy and fast checkout...',

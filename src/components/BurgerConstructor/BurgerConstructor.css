@@ -1,5 +1,4 @@
 .BurgerConstructorPanel {
-    max-width: 700px;
     background-color: #eee;
     margin: auto;
     display: flex;
@@ -7,6 +6,10 @@
     box-shadow: 2px 2px 5px grey;
     padding: 20px;
     position: relative;
+}
+
+.BurgerConstructor {
+    margin:auto;
 }
 
 /*@media (min-width: 500px) and (min-height: 400px) {

@@ -15,12 +15,12 @@
     font-weight:bold;
 }
 
-.jumbotron {
-    padding: 10rem 2rem;
-}
-
-/*@media (min-width: 576px) {
-    .jumbotron {
-        padding: 10rem 2rem;
+@media (max-width: 700px) {
+    .OfferMain {
+        font-size:2em;
     }
-}*/
+
+    .OfferSubTitle {
+        font-size: 1.2em;
+    }
+}

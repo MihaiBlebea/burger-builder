@@ -17,8 +17,8 @@ function BurgerConstructor(props)
     })
 
     return (
-        <div className='card'>
-            <div className='card-body' style={{display: 'flex', justifyContent: 'center', backgroundColor: '#eee'}}>
+        <div className='card BurgerConstructorPanel'>
+            <div className='card-body BurgerConstructor'>
                 <div className='row'>
                     <Button
                         click={props.reset.bind(this)}

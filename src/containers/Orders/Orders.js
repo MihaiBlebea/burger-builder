@@ -1,5 +1,5 @@
 import React from 'react';
-import { Footer, FooterContent } from '../../components/exports.js';
+import { } from '../../components/exports.js';
 
 function Orders()
 {
@@ -8,9 +8,6 @@ function Orders()
             <div>
                 Orders page
             </div>
-            <Footer>
-                <FooterContent />
-            </Footer>
         </div>
     );
 }

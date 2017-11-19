@@ -6,7 +6,7 @@ import OrderSummary from './Modal/OrderSummary/OrderSummary.js';
 import BurgerIngredient from './BurgerIngredient/BurgerIngredient.js';
 import BurgerConstructor from './BurgerConstructor/BurgerConstructor.js';
 import IngredientList from './IngredientList/IngredientList.js';
-import Input from './Input/Input.js';
+import Input from './CheckoutForm/Input/Input.js';
 import Toolbar from './Navigation/Toolbar/Toolbar.js';
 import NavigationLink from './Navigation/NavigationLink/NavigationLink.js';
 import LogoLink from './Navigation/LogoLink/LogoLink.js';
@@ -19,6 +19,7 @@ import Steps from './Steps/Steps.js';
 import Step from './Steps/Step/Step.js';
 import OurStory from './OurStory/OurStory.js';
 import OurBenefits from './OurBenefits/OurBenefits.js';
+import CheckoutForm from './CheckoutForm/CheckoutForm.js';
 
 export {
     Button,
@@ -41,5 +42,6 @@ export {
     Steps,
     Step,
     OurStory,
-    OurBenefits
+    OurBenefits,
+    CheckoutForm
 }

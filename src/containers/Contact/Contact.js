@@ -1,5 +1,5 @@
 import React from 'react';
-import { Footer, FooterContent } from '../../components/exports.js';
+import { } from '../../components/exports.js';
 
 function Contact()
 {
@@ -8,9 +8,6 @@ function Contact()
             <div>
                 Contact page
             </div>
-            <Footer>
-                <FooterContent />
-            </Footer>
         </div>
     );
 }

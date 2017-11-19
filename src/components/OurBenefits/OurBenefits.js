@@ -1,4 +1,5 @@
 import React from 'react';
+import { Wrap } from '../../hoc/exports.js';
 import './OurBenefits.css';
 
 function OurBenefits(props)
@@ -11,17 +12,17 @@ function OurBenefits(props)
         { title: 'this is the title', content: 'Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum' },
     ];
 
-    let renderedBenefits = benefits.map((item)=> {
-        return <li className='OurBenefitsItem'><strong>{item.title}</strong> - {item.content}</li>
+    let renderedBenefits = benefits.map((item, index)=> {
+        return <li key={index} className='OurBenefitsItem'><strong>{item.title}</strong> - {item.content}</li>
     });
 
     return (
-        <div className='OurBenefits'>
+        <Wrap>
             <h3 className='OurBenefitsTitle'>{props.children}</h3>
             <ul className='OurBenefitsList'>
                 {renderedBenefits}
             </ul>
-        </div>
+        </Wrap>
     );
 }
 
