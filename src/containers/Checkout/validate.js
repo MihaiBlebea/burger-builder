@@ -19,8 +19,8 @@ class Validate
         this.value = value;
 
         this.checkType();
-        this.checkLength();
-        this.checkContains();
+        // this.checkLength();
+        // this.checkContains();
 
         return this.valid;
     }
@@ -79,7 +79,6 @@ class Validate
         switch(this.rules.type)
         {
             case('string'):
-            console.log('check if string');
                 this.string();
                 break;
             case('integer'):

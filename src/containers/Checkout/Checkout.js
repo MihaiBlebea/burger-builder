@@ -17,7 +17,13 @@ class Checkout extends React.Component
             expire: '12/18',
             cvc: '123'
         },
-        error: true
+        error: {
+            firstName: { error: false, message: null },
+            lastName: { error: false, message: null },
+            phone: { error: false, message: null },
+            email: { error: false, message: null },
+            address: { error: false, message: null }
+        }
     }
 
     onUpdateHandler(event)
@@ -25,8 +31,21 @@ class Checkout extends React.Component
         let name = event.target.name;
         let value = event.target.value;
 
+        switch(name)
+        {
+            case('firstName'):
+                this.validateFirstName(value);
+                break;
+            default:
+                console.log('no value');
+        }
+    }
+
+    validateFirstName(value)
+    {
+        console.log(value)
         let validate = new Validate();
-        let valid = validate.check({
+        let check = validate.check({
             type: 'string',
             length: {
                 max: 3,
@@ -34,12 +53,21 @@ class Checkout extends React.Component
             },
             contains: ['@']
         }, value);
-
-        console.log(valid, validate.withMessage());
-
-        this.setState({
-            [name]: value
-        });
+        console.log(check)
+        if(check === false)
+        {
+            let message = validate.withMessage();
+            this.setState({
+                firstName: value,
+                error: {
+                    firstName: { error: true, message: message }
+                }
+            })
+        } else {
+            this.setState({
+                firstName: value
+            })
+        }
     }
 
     render()

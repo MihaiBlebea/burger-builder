@@ -34,7 +34,7 @@ function CheckoutForm(props)
                     name='firstName'
                     errorMessage='Please check the input'
                     value={props.firstName}
-                    error={true}
+                    error={props.error.firstName.error}
                     update={props.firstNameUpdate} />
                 <Input
                     label='Last Name'
@@ -42,7 +42,7 @@ function CheckoutForm(props)
                     name='lastName'
                     errorMessage='Please check the input'
                     value={props.lastName}
-                    error={true}
+                    error={props.error}
                     update={props.firstNameUpdate} />
                 <Input
                     label='Email'
@@ -50,7 +50,7 @@ function CheckoutForm(props)
                     name='email'
                     errorMessage='Please check the input'
                     value={props.email}
-                    error={true}
+                    error={props.error}
                     update={props.firstNameUpdate} />
                 <Input
                     label='Phone'
@@ -58,7 +58,7 @@ function CheckoutForm(props)
                     name='phone'
                     errorMessage='Please check the input'
                     value={props.phone}
-                    error={true}
+                    error={props.error}
                     update={props.firstNameUpdate} />
                 <Input
                     label='Address'
@@ -66,7 +66,7 @@ function CheckoutForm(props)
                     name='address'
                     errorMessage='Please check the input'
                     value={props.address}
-                    error={true}
+                    error={props.error}
                     update={props.firstNameUpdate} />
             </div>
 

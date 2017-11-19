@@ -1,5 +1,6 @@
 import React from 'react';
 import { IngredientList, Button } from '../../exports.js';
+import { Link } from 'react-router-dom';
 import './OrderSummary.css';
 
 function OrderSummary(props)
@@ -13,9 +14,11 @@ function OrderSummary(props)
                 <Button
                     click={props.cancel.bind(this)}
                     type={'danger'}>Cancel</Button>
-                <Button
-                    click={props.submit.bind(this, 'Serban Blebea', '0757103898', 'NW2 1UT')}
-                    type={'success'}>Checkout</Button>
+                <Link to='/checkout'>
+                    <Button
+                        click={''}
+                        type={'success'}>Checkout</Button>
+                </Link>
             </div>
         </div>
     );
