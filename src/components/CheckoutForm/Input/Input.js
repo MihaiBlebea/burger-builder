@@ -3,7 +3,6 @@ import './Input.css';
 
 function Input(props)
 {
-    console.log(props.error)
     let error = (
         <small className="form-text InputError">{props.errorMessage}</small>
     );
@@ -19,10 +18,12 @@ function Input(props)
         <div className="form-group">
             <label>{props.label}:</label>
             <input
+                className={classes.join(' ')}
                 name={props.name}
                 type={props.type}
-                className={classes.join(' ')} />
-            { (props.error) ? error : null }
+                value={props.value}
+                onChange={props.update}/>
+            {(props.error) ? error : null}
         </div>
     );
 }
