@@ -13,6 +13,7 @@ function OrderSummary(props)
             <div className='row ButtonRow'>
                 <Button
                     click={props.cancel.bind(this)}
+                    margin='0'
                     type={'danger'}>Cancel</Button>
                 <Link to='/checkout'>
                     <Button

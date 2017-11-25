@@ -4,6 +4,7 @@ class Validate
     valid = true;
     value = null;
     rules = {
+        required: false,
         type: null,
         length: {
             max: null,
@@ -18,11 +19,42 @@ class Validate
         this.rules = rules;
         this.value = value;
 
-        this.checkType();
-        // this.checkLength();
-        // this.checkContains();
+        if(this.rules.required === true)
+        {
+            this.checkRequired();
+        }
 
-        return this.valid;
+        if(this.rules.type !== undefined)
+        {
+            this.checkType();
+        }
+
+        if(this.rules.length !== undefined)
+        {
+            this.checkLength();
+        }
+
+        if(this.rules.contains !== undefined)
+        {
+            this.checkContains();
+        }
+
+        if(this.valid === true)
+        {
+            return this.valid;
+        } else {
+            return this.message;
+        }
+    }
+
+    // Check if required
+    checkRequired()
+    {
+        if(this.value === '')
+        {
+            this.valid = false;
+            this.message.push(`This field is required`);
+        }
     }
 
     // Check contains
@@ -37,6 +69,7 @@ class Validate
                 if(this.value.includes(contains[i]) !== true)
                 {
                     this.valid = false;
+                    this.message.push(`This string should contain ${contains[i]}`);
                 }
             }
         }
@@ -45,8 +78,15 @@ class Validate
     // Check length
     checkLength()
     {
-        this.min();
-        this.max();
+        if(this.rules.length.min !== undefined)
+        {
+            this.min();
+        }
+
+        if(this.rules.length.max !== undefined)
+        {
+            this.max();
+        }
     }
 
     min()
@@ -57,6 +97,7 @@ class Validate
             if(this.value.length < min)
             {
                 this.valid = false;
+                this.message.push(`Character count should be greater then ${this.rules.length.min}`);
             }
         }
     }
@@ -69,6 +110,7 @@ class Validate
             if(this.value.length > max)
             {
                 this.valid = false;
+                this.message.push(`Character count should be smaller then ${this.rules.length.max}`);
             }
         }
     }
@@ -93,11 +135,6 @@ class Validate
             default:
                 console.log('Unknown type');
         }
-
-        if(this.valid === false)
-        {
-            this.message.push(`This should be a ${this.rules.type}`);
-        }
     }
 
     string()
@@ -105,6 +142,7 @@ class Validate
         if(isNaN(this.value) !== true)
         {
             this.valid = false;
+            this.message.push(`This should be a string`);
         }
     }
 
@@ -113,6 +151,7 @@ class Validate
         if(isNaN(this.value) !== false)
         {
             this.valid = false;
+            this.message.push(`This should be a number`);
         }
     }
 
@@ -121,6 +160,7 @@ class Validate
         if(typeof this.value !== 'object')
         {
             this.valid = false;
+            this.message.push(`This should be an object`);
         }
     }
 
@@ -129,6 +169,7 @@ class Validate
         if(typeof this.value !== 'boolean')
         {
             this.valid = false;
+            this.message.push(`This should be a boolean`);
         }
     }
 

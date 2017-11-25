@@ -17,7 +17,7 @@ function Message(props)
     }
 
     let message = (
-        <div className={classes.join(' ')} style={{ maxWidth: 90 + '%', margin: 'auto' }}>
+        <div className={classes.join(' ')} style={{ maxWidth: 90 + '%', margin: 'auto', marginBottom: 30 + 'px' }}>
             <strong style={{ textTransform: 'capitalize' }}>{props.title}!</strong> {props.children}
         </div>
     )

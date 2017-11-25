@@ -3,15 +3,15 @@ import './Input.css';
 
 function Input(props)
 {
-    let error = (
-        <small className="form-text InputError">{props.errorMessage}</small>
-    );
-
     let classes = ['form-control'];
+    let errorMessages = null;
 
     if(props.error)
     {
         classes.push('is-invalid');
+        errorMessages = props.errorMessage.map((message, index)=> {
+            return <small key={index} className="form-text InputError">{index + 1}. {message}</small>
+        });
     }
 
     return (
@@ -23,7 +23,7 @@ function Input(props)
                 type={props.type}
                 value={props.value}
                 onChange={props.update}/>
-            {(props.error) ? error : null}
+            { errorMessages }
         </div>
     );
 }

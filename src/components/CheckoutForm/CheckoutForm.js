@@ -1,6 +1,6 @@
 import React from 'react';
 import CardReactFormContainer from 'card-react';
-import { Input, Button } from '../exports.js';
+import { Input, Button, Title } from '../exports.js';
 import './card.css';
 
 function CheckoutForm(props)
@@ -27,51 +27,51 @@ function CheckoutForm(props)
     return (
         <div className='row'>
             <div className='col-md-6'>
-                <h4>Your information</h4>
+                <Title type='small'>Client information:</Title>
                 <Input
                     label='First Name'
                     type='text'
                     name='firstName'
-                    errorMessage='Please check the input'
+                    errorMessage={props.error.firstName.message}
                     value={props.firstName}
-                    error={props.error.firstName.error}
-                    update={props.firstNameUpdate} />
+                    error={props.error.firstName.show}
+                    update={props.update} />
                 <Input
                     label='Last Name'
                     type='text'
                     name='lastName'
-                    errorMessage='Please check the input'
+                    errorMessage={props.error.lastName.message}
                     value={props.lastName}
-                    error={props.error}
-                    update={props.firstNameUpdate} />
+                    error={props.error.lastName.show}
+                    update={props.update} />
                 <Input
                     label='Email'
                     type='text'
                     name='email'
-                    errorMessage='Please check the input'
+                    errorMessage={props.error.email.message}
                     value={props.email}
-                    error={props.error}
-                    update={props.firstNameUpdate} />
+                    error={props.error.email.show}
+                    update={props.update} />
                 <Input
                     label='Phone'
                     type='text'
                     name='phone'
-                    errorMessage='Please check the input'
+                    errorMessage={props.error.phone.message}
                     value={props.phone}
-                    error={props.error}
-                    update={props.firstNameUpdate} />
+                    error={props.error.phone.show}
+                    update={props.update} />
                 <Input
                     label='Address'
                     type='text'
                     name='address'
-                    errorMessage='Please check the input'
+                    errorMessage={props.error.address.message}
                     value={props.address}
-                    error={props.error}
-                    update={props.firstNameUpdate} />
+                    error={props.error.address.show}
+                    update={props.update} />
             </div>
 
             <div className='col-md-6'>
-                <h4>Payment information</h4>
+                <Title type='small'>Payment information:</Title>
 
                 <CardReactFormContainer
                     container="card-wrapper"
@@ -89,7 +89,7 @@ function CheckoutForm(props)
                     <Button
                         type='success'
                         size='large'
-                        click={alert.bind('buy')}>Place Order</Button>
+                        click={props.send.bind(this)}>Place Order</Button>
                 </div>
             </div>
         </div>

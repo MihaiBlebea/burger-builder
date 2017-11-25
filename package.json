@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.17.1",
     "card-react": "^1.2.7",
+    "immutability-helper": "^2.5.0",
     "moment": "^2.19.2",
     "prop-types": "^15.6.0",
     "react": "^16.1.0",

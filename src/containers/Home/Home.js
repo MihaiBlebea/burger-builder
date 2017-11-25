@@ -3,7 +3,8 @@ import {
     Offer,
     Steps,
     OurStory,
-    OurBenefits } from '../../components/exports.js';
+    OurBenefits,
+    Title} from '../../components/exports.js';
 import { CenterContent } from '../../hoc/exports.js';
 
 function Home()
@@ -14,11 +15,15 @@ function Home()
             <Steps />
 
             <CenterContent>
-                <OurBenefits>Why build your own burger?</OurBenefits>
+                <OurBenefits>
+                    <Title type='small'>Why build your own burger?</Title>
+                </OurBenefits>
             </CenterContent>
 
             <CenterContent>
-                <OurStory>Who exactly are we?</OurStory>
+                <OurStory>
+                    <Title type='small'>Who exactly are we?</Title>
+                </OurStory>
             </CenterContent>
         </div>
     );

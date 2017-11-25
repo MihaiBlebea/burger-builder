@@ -1,0 +1,10 @@
+.TitleSmall {
+    border-left: 10px solid #61DAFB;
+    padding-left: 10px;
+    margin-bottom: 40px;
+}
+
+.TitleNormal {
+    border-bottom: 2px solid #61DAFB;
+    margin-bottom: 40px;
+}
