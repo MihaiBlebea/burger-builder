@@ -1,0 +1,15 @@
+@import url(https://fonts.googleapis.com/css?family=Lobster);
+
+.Price {
+    padding: 0;
+    margin: auto;
+    display:block;
+    width: fit-content;
+    color: #61dafb;
+    margin-bottom: 30px;
+    font-size: 4em;
+    font-family: 'Lobster', cursive;
+    -webkit-transform: rotateZ(-6deg);
+    transform: rotateZ(-6deg);
+    text-shadow: 2px 2px 0px #62101a, 4px 4px 0px #781420, 6px 6px 0px #8e1726, 8px 8px 0px #a41b2c, 10px 10px 0px #ba1e32;
+}

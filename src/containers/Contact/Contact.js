@@ -1,14 +1,23 @@
 import React from 'react';
-import { } from '../../components/exports.js';
+import { Price } from '../../components/exports.js';
+import { CenterContent } from '../../hoc/exports.js';
 
 function Contact()
 {
     return (
-        <div>
-            <div>
-                Contact page
+        <CenterContent>
+            <Price>
+                Contact...
+            </Price>
+            <div className='row'>
+                <div className='col-md-6'>
+                    Map
+                </div>
+                <div className='col-md-6'>
+                    Address
+                </div>
             </div>
-        </div>
+        </CenterContent>
     );
 }
 

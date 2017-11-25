@@ -3,12 +3,10 @@ import { Wrap } from '../../hoc/exports.js';
 import {
     Burger,
     BurgerConstructor,
-    Message,
     Modal,
     OrderSummary,
     Footer,
     Loader } from '../../components/exports.js';
-import axios from '../../axios-orders.js';
 
 class BurgerBuilder extends React.Component
 {
@@ -20,92 +18,9 @@ class BurgerBuilder extends React.Component
             { name: 'bacon', price: 3 },
         ],
         currentBurger: [],
-        error: {
-            show: false,
-            message: null,
-            type: null
-        },
         price: 0,
         modal: false,
         loading: false,
-        customer: {
-            name: 'Serban',
-            phone: '0757103898',
-            code: 'NW2 1UT'
-        }
-    }
-
-    componentDidMount()
-    {
-        axios.get('https://burger-builder-a93a7.firebaseio.com/ingredients.json').then((response)=> {
-            console.log(response.data)
-            if(response.request.status === 200)
-            {
-                this.setState({
-                    ingredients: response.data
-                })
-            }
-        }).catch((err)=> {
-            console.log(err)
-        });
-    }
-
-    checkoutSubmitHandler()
-    {
-        console.log('Checkout submitted');
-        let payload = {
-            name: this.state.customer.name,
-            phone: this.state.customer.phone,
-            code: this.state.customer.code,
-            price: this.state.price
-        };
-        this.setLoading();
-
-        axios.post('/orders.json', payload).then((response)=> {
-            console.log(response.request.status);
-            if(response.request.status === 200)
-            {
-                this.setError({
-                    type: 'success',
-                    message: 'Your burger is on the way'
-                });
-
-                this.toggleModalHandler();
-                this.reset();
-            }
-            this.removeLoading();
-        }).catch((err)=> {
-            console.log(err);
-            this.setError({
-                type: 'error',
-                message: 'Something went wrong, please checkout again'
-            });
-            this.removeLoading();
-        });
-    }
-
-    setError(obj)
-    {
-        this.setState({
-            error: {
-                show: true,
-                message: obj.message,
-                type: obj.type
-            }
-        });
-
-        setTimeout(()=> {
-            this.removeError();
-        }, 5000);
-    }
-
-    removeError()
-    {
-        this.setState({
-            error: {
-                show: false
-            }
-        })
     }
 
     setLoading()
@@ -229,7 +144,7 @@ class BurgerBuilder extends React.Component
             <OrderSummary
                 price={this.state.price}
                 fields={this.state.checkout}
-                submit={this.checkoutSubmitHandler.bind(this)}
+                // submit={this.checkoutSubmitHandler.bind(this)}
                 cancel={this.toggleModalHandler.bind(this)}
                 currentBurger={this.parseIngredients(this.state.currentBurger)} />
         );
@@ -237,10 +152,6 @@ class BurgerBuilder extends React.Component
         return (
             <Wrap>
                 <Loader show={this.state.loading}/>
-                <Message
-                    show={this.state.error.show}
-                    type={this.state.error.type}
-                    title={this.state.error.type}>{this.state.error.message}</Message>
                 {burger}
                 <Footer>
                     {burgerConstructor}

@@ -15,7 +15,10 @@ function OrderSummary(props)
                     click={props.cancel.bind(this)}
                     margin='0'
                     type={'danger'}>Cancel</Button>
-                <Link to='/checkout'>
+                <Link to={{
+                    pathname: '/checkout',
+                    state: { price: props.price }
+                }}>
                     <Button
                         click={''}
                         type={'success'}>Checkout</Button>

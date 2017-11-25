@@ -1,36 +1,54 @@
 import React from 'react';
 import update from 'immutability-helper';
+import axios from '../../axios-orders.js';
 
-import { CheckoutForm, Message } from '../../components/exports.js';
+import { CheckoutForm, Message, Loader } from '../../components/exports.js';
 import { CenterContent } from '../../hoc/exports.js';
 import * as validate from './validateInput.js';
 
 class Checkout extends React.Component
 {
-    state = {
-        firstName: '',
-        lastName: '',
-        phone: '',
-        email: '',
-        address: '',
-        card: {
-            holder: 'Serban Mihai Blebea',
-            number: '4111111111111111',
-            expire: '12/18',
-            cvc: '123'
-        },
-        error: {
-            firstName: { show: false, message: false },
-            lastName: { show: false, message: false },
-            phone: { show: false, message: false },
-            email: { show: false, message: false },
-            address: { show: false, message: false }
-        },
-        message: {
-            show: false,
-            type: null,
-            message: null
+    constructor(props)
+    {
+        console.log(props)
+        super(props);
+        this.initialState = {
+            firstName: '',
+            lastName: '',
+            phone: '',
+            email: '',
+            address: '',
+            price: '',
+            card: {
+                holder: '',
+                number: '',
+                expire: '',
+                cvc: ''
+            },
+            error: {
+                firstName: { show: false, message: false },
+                lastName: { show: false, message: false },
+                phone: { show: false, message: false },
+                email: { show: false, message: false },
+                address: { show: false, message: false }
+            },
+            loading: false,
+            message: {
+                show: false,
+                type: null,
+                message: null
+            }
         }
+
+        this.state = this.initialState;
+    }
+
+    componentDidMount()
+    {
+        console.log(this.props.location.state.price)
+        this.setState({
+            price: this.props.location.state.price
+        })
     }
 
     sendOrderHandler()
@@ -39,10 +57,49 @@ class Checkout extends React.Component
         let ready = this.isReadyToSend();
         if(ready)
         {
-            console.log('Send order')
+            let payload = {
+                name: this.state.firstName + ' ' + this.state.lastName,
+                email: this.state.email,
+                phone: this.state.phone,
+                address: this.state.address,
+                price: '20$'
+            };
+
+            this.setLoading();
+
+            axios.post('/orders.json', payload).then((response)=> {
+                console.log(response.request.status);
+                if(response.request.status === 200)
+                {
+                    this.resetOrder();
+                }
+                this.removeLoading();
+            }).catch((err)=> {
+                console.log(err);
+                this.setError({
+                    type: 'error',
+                    message: 'Something went wrong, please checkout again'
+                });
+                this.removeLoading();
+            });
+
         } else {
             console.log('order not sent')
         }
+    }
+
+    setLoading()
+    {
+        this.setState({
+            loading: true
+        })
+    }
+
+    removeLoading()
+    {
+        this.setState({
+            loading: false
+        })
     }
 
     isReadyToSend()
@@ -52,6 +109,10 @@ class Checkout extends React.Component
             this.state.phone === '' ||
             this.state.email === '' ||
             this.state.address === '' ||
+            // this.state.card.holder === '' ||
+            // this.state.card.number === '' ||
+            // this.state.card.expire === '' ||
+            // this.state.card.cvc === '' ||
             this.state.error.firstName.show === true ||
             this.state.error.lastName.show === true ||
             this.state.error.email.show === true ||
@@ -68,6 +129,12 @@ class Checkout extends React.Component
             return true;
         }
     }
+
+    resetOrder()
+    {
+        this.setState(this.initialState);
+    }
+
 
     setError(obj)
     {
@@ -153,6 +220,7 @@ class Checkout extends React.Component
     {
         return (
             <CenterContent>
+                <Loader show={this.state.loading}/>
                 <Message
                     show={this.state.message.show}
                     type={this.state.message.type}
@@ -163,6 +231,7 @@ class Checkout extends React.Component
                     email={this.state.email}
                     phone={this.state.phone}
                     address={this.state.address}
+                    price={this.state.price}
                     card={this.state.card}
                     error={this.state.error}
                     update={this.onUpdateHandler.bind(this)}

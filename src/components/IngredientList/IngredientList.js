@@ -1,4 +1,5 @@
 import React from 'react';
+import { Price } from '../exports.js';
 import './IngredientList.css';
 
 function IngredientList(props)
@@ -20,7 +21,7 @@ function IngredientList(props)
                 {list}
             </ul>
             <div className='IngredientListTotal'>
-                Total £{props.price}
+                <Price>Total {props.price}£</Price>
             </div>
         </div>
     );

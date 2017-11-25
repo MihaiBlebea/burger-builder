@@ -1,6 +1,6 @@
 import React from 'react';
 import CardReactFormContainer from 'card-react';
-import { Input, Button, Title } from '../exports.js';
+import { Input, Button, Title, Price } from '../exports.js';
 import './card.css';
 
 function CheckoutForm(props)
@@ -72,7 +72,7 @@ function CheckoutForm(props)
 
             <div className='col-md-6'>
                 <Title type='small'>Payment information:</Title>
-
+                <Price>Pay just {props.price}£</Price>
                 <CardReactFormContainer
                     container="card-wrapper"
                     formInputsNames={formNames}

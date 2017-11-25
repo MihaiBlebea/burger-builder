@@ -21,6 +21,7 @@ import OurStory from './OurStory/OurStory.js';
 import OurBenefits from './OurBenefits/OurBenefits.js';
 import CheckoutForm from './CheckoutForm/CheckoutForm.js';
 import Title from './Title/Title.js';
+import Price from './Price/Price.js';
 
 export {
     Button,
@@ -45,5 +46,6 @@ export {
     OurStory,
     OurBenefits,
     CheckoutForm,
-    Title
+    Title,
+    Price
 }
