@@ -1,6 +1,7 @@
 import React from 'react';
 import update from 'immutability-helper';
 import axios from '../../axios-orders.js';
+import moment from 'moment';
 
 import { CheckoutForm, Message, Loader } from '../../components/exports.js';
 import { CenterContent } from '../../hoc/exports.js';
@@ -55,6 +56,7 @@ class Checkout extends React.Component
     {
         console.log('order init')
         let ready = this.isReadyToSend();
+        let date = moment().format('LLLL');
         if(ready)
         {
             let payload = {
@@ -62,7 +64,8 @@ class Checkout extends React.Component
                 email: this.state.email,
                 phone: this.state.phone,
                 address: this.state.address,
-                price: '20$'
+                date: date,
+                price: 20
             };
 
             this.setLoading();
@@ -74,6 +77,10 @@ class Checkout extends React.Component
                     this.resetOrder();
                 }
                 this.removeLoading();
+                this.props.history.push({
+                    pathname: '/orders',
+                    state: { fromCheckout: true }
+                })
             }).catch((err)=> {
                 console.log(err);
                 this.setError({

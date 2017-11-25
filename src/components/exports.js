@@ -22,6 +22,7 @@ import OurBenefits from './OurBenefits/OurBenefits.js';
 import CheckoutForm from './CheckoutForm/CheckoutForm.js';
 import Title from './Title/Title.js';
 import Price from './Price/Price.js';
+import Card from './Card/Card.js';
 
 export {
     Button,
@@ -47,5 +48,6 @@ export {
     OurBenefits,
     CheckoutForm,
     Title,
-    Price
+    Price,
+    Card
 }

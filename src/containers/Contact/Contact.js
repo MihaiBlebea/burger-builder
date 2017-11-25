@@ -4,6 +4,7 @@ import { CenterContent } from '../../hoc/exports.js';
 
 function Contact()
 {
+
     return (
         <CenterContent>
             <Price>
@@ -11,7 +12,7 @@ function Contact()
             </Price>
             <div className='row'>
                 <div className='col-md-6'>
-                    Map
+
                 </div>
                 <div className='col-md-6'>
                     Address
