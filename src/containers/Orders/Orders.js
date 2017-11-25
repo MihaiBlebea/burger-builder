@@ -22,15 +22,6 @@ class Orders extends React.Component
     componentDidMount()
     {
         //Check if user came from Checkout
-        let comeFromCheckout = this.props.location.state.comeFromCheckout;
-        if(comeFromCheckout === true)
-        {
-            this.setMessage({
-                type: 'success',
-                message: "Your burger it's on his way now. In max 20 we will be at your door."
-            })
-        }
-
         this.setLoading();
         axios.get('/orders.json').then((response)=> {
             if(response.request.status === 200)
